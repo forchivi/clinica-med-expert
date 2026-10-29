@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% from "_icone.html" import icona %}
+
+{% block titolo %}Assistente IA, Med.Expert{% endblock %}
+
+{% block pagina %}
+
+<!-- [FONTE] Modulo_4_ IA/Esercizio 25 /templates/chat.html: conversazione, modulo della domanda,
+     ultime conversazioni salvate. Qui i messaggi sono mostrati come bolle di una chat. -->
+
+<section class="assistente">
+
+    <div class="chat-finestra">
+
+        <div class="chat-testata">
+            <span class="avatar-bot">{{ icona("scintille") }}</span>
+            <div>
+                <h1>Assistente IA Med.Expert</h1>
+                <p><span class="pallino-online"></span> Online, risponde in 5 lingue</p>
+            </div>
+            <form method="post" action="{{ url_for('durka_route.nuova_chat') }}" style="margin-left: auto;">
+                <button type="submit" class="btn btn-trasparente">{{ icona("ricomincia") }} Nuova chat</button>
+            </form>
+        </div>
+
+        <div class="chat-messaggi" id="messaggi">
+
+            {% if conversazione|length <= 0 %}
+
+            <div class="chat-vuota">
+                <span class="azione-icona">{{ icona("scintille") }}</span>
+                <h2>Ciao {{ nome_utente }}!</h2>
+                <p>Scrivi la tua domanda qui sotto oppure scegline una veloce a destra. L'assistente ricorda il contesto della conversazione.</p>
+            </div>
+
+            {% else %}
+
+            {% for messaggio in conversazione %}
+            {% if messaggio.role == 'user' %}
+            <div class="bolla-riga utente">
+                <div class="bolla bolla-utente bolla-testo">{{ messaggio.content }}</div>
+            </div>
+            {% elif messaggio.role == 'assistant' %}
+            <div class="bolla-riga">
+                <span class="mini-avatar">{{ icona("scintille") }}</span>
+                <div class="bolla bolla-bot bolla-testo">{{ messaggio.content }}</div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+            {% endif %}
+
+        </div>
+
+        <form method="post" action="{{ url_for('durka_route.chat') }}" class="chat-invio">
+            <textarea id="domanda" name="domanda" rows="1" required
+                      placeholder="Scrivi la tua domanda..." aria-label="La tua domanda"></textarea>
+            <button type="submit" aria-label="Invia domanda">{{ icona("invia") }}</button>
+        </form>
+        <p class="modello">Comandi: scrivi «storico» per lo storico oppure «esci» per uscire. Modello: {{ modello }}</p>
+
+    </div>
+
+    <aside class="laterale">
+
+        <div class="laterale-scheda">
+            <h2>{{ icona("chat") }} Domande veloci</h2>
+            <form method="post" action="{{ url_for('durka_route.chat') }}" class="domande-veloci">
+                <button type="submit" name="domanda" value="Come mi preparo agli esami del sangue?">Come mi preparo agli esami del sangue?</button>
+                <button type="submit" name="domanda" value="Che differenza c'è tra cardiologo e ortopedico?">Che differenza c'è tra cardiologo e ortopedico?</button>
+                <button type="submit" name="domanda" value="Cosa devo portare alla prima visita?">Cosa devo portare alla prima visita?</button>
+            </form>
+        </div>
+
+        <div class="laterale-scheda">
+            <h2>{{ icona("lista") }} Ultime domande</h2>
+            {% if storico %}
+            <ul class="storico-mini">
+                {% for elemento in storico[:3] %}
+                <li>
+                    <small>{{ elemento[3] }}</small>
+                    {{ elemento[1]|truncate(80) }}
+                </li>
+                {% endfor %}
+            </ul>
+            <p></p>
+            <a href="{{ url_for('durka_route.storico') }}" class="btn btn-light">Vedi tutto lo storico</a>
+            {% else %}
+            <p>Non ci sono ancora conversazioni salvate.</p>
+            {% endif %}
+        </div>
+
+        <div class="laterale-scheda">
+            <h2>{{ icona("info") }} Risposte rapide</h2>
+            <p>Orari, prezzi e reparti sono anche nell'assistente con le risposte pronte.</p>
+            <a href="{{ url_for('durka_route.assistente') }}" class="btn btn-light">Apri le risposte rapide</a>
+        </div>
+
+    </aside>
+
+</section>
+
+<script>
+    // porta la chat all'ultimo messaggio
+    const messaggi = document.getElementById("messaggi");
+    messaggi.scrollTop = messaggi.scrollHeight;
+
+    // Invio manda la domanda, Shift+Invio va a capo
+    document.getElementById("domanda").addEventListener("keydown", function (evento) {
+        if (evento.key === "Enter" && !evento.shiftKey) {
+            evento.preventDefault();
+            if (this.value.trim()) {
+                this.form.submit();
+            }
+        }
+    });
+</script>
+{% endblock %}

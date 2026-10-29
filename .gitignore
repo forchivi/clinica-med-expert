@@ -1,0 +1,15 @@
+# segreti: la chiave Groq e la SECRET_KEY restano solo sul computer
+.env
+
+# ambiente virtuale e file generati da Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# database locale con gli utenti registrati
+*.db
+
+# file di sistema
+.DS_Store
+.vscode/

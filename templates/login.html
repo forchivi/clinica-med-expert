@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% from "_icone.html" import icona %}
+
+{% block titolo %}Accedi, Med.Expert{% endblock %}
+
+{% block pagina %}
+<section class="accesso">
+    <div class="accesso-scheda">
+
+        <div class="accesso-lato">
+            <span class="etichetta">{{ icona("lucchetto") }} Area riservata</span>
+            <h2>Bentornato in Med.Expert</h2>
+            <p>Accedi per prenotare le visite e parlare con l'assistente IA.</p>
+            <ul class="vantaggi">
+                <li>{{ icona("calendario") }} Appuntamenti con i nostri specialisti</li>
+                <li>{{ icona("scintille") }} Assistente IA in cinque lingue</li>
+                <li>{{ icona("scudo") }} Password salvata in forma cifrata</li>
+            </ul>
+        </div>
+
+        <div class="accesso-modulo">
+            <h1>Accedi</h1>
+            <p>Non hai un account? <a href="{{ url_for('durka_route.register') }}">Registrati</a></p>
+
+            <!-- [FONTE] errore di login mostrato con flash come in Modulo_4_ IA/25 minishop/controller.py righe 102-103 -->
+            <form action="{{ url_for('durka_route.login') }}" method="POST">
+
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" autocomplete="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" autocomplete="current-password" required>
+
+                <button type="submit">Accedi {{ icona("entra") }}</button>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

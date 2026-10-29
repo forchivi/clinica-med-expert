@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block contenuto %}
+
+<h2>Clinica MED.EXPERT</h2>
+
+<h5>Gestionale della clinica</h5>
+
+<p>Scegli una sezione</p>
+
+<a href="{{ url_for('durka_route.select') }}">Pazienti</a>
+<a href="{{ url_for('durka_route.dottori') }}">Dottori</a>
+<a href="{{ url_for('durka_route.servizi') }}">Servizi</a>
+<a href="{{ url_for('durka_route.prenota') }}">Appuntamenti</a>
+
+<p>Area utente</p>
+
+<a href="{{ url_for('durka_route.login') }}">Accedi</a>
+<a href="{{ url_for('durka_route.register') }}">Registrati</a>
+<a href="{{ url_for('durka_route.profilo') }}">Profilo</a>
+
+{% endblock %}

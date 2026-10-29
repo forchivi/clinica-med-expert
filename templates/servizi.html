@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block contenuto %}
+
+<h2>Servizi</h2>
+
+<!-- [FONTE] Progetto 16 views/base.html riga 41: il modulo per inserire si vede solo all'admin. -->
+{% if session.get("ruolo") == "admin" %}
+<h5>Inserisci un nuovo servizio</h5>
+
+<form action="{{ url_for('durka_route.reparto') }}" method="POST">
+
+    <label>Nome</label>
+    <input type="text" name="nome" required>
+
+    <label>Descrizione</label>
+    <textarea name="descrizione" required></textarea>
+
+    <label>Prezzo</label>
+    <input type="number" name="prezzo" step="0.01" required>
+
+    <label>Durata</label>
+    <input type="text" name="durata" placeholder="es. 30 minuti" required>
+
+    <button type="submit">Inserisci servizio</button>
+
+</form>
+{% endif %}
+
+<h2>Elenco servizi</h2>
+
+{% for servizio in servizi %}
+
+<p>ID: {{ servizio[0] }}</p>
+<p>Nome: {{ servizio[1] }}</p>
+<p>Descrizione: {{ servizio[2] }}</p>
+<p>Prezzo: {{ servizio[3] }} €</p>
+<p>Durata: {{ servizio[4] }}</p>
+
+<!-- solo l'admin vede il link Elimina (stesso controllo di Progetto 16) -->
+{% if session.get("ruolo") == "admin" %}
+<a href="{{ url_for('durka_route.delete_servizio', id=servizio[0]) }}">Elimina</a>
+{% endif %}
+
+<hr>
+
+{% endfor %}
+
+{% endblock %}

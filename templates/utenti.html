@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block contenuto %}
+
+<!-- [FONTE] Progetto 16 views/utenti.html: elenco utenti per l'admin; Elimina non compare per se stessi. -->
+
+<h2>Gestione utenti</h2>
+
+{% for utente in utenti %}
+
+<p>ID: {{ utente[0] }}</p>
+<p>Username: {{ utente[1] }}</p>
+<p>Ruolo: {{ utente[2] }}</p>
+
+{% if utente[0] != session["utente_id"] %}
+<a href="{{ url_for('durka_route.elimina_utente_admin', id=utente[0]) }}">Elimina</a>
+{% endif %}
+
+<hr>
+
+{% endfor %}
+
+{% endblock %}

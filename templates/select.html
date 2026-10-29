@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block contenuto %}
+
+<h2>Pazienti</h2>
+
+<h5>Inserisci un nuovo paziente</h5>
+
+<form action="{{ url_for('durka_route.paziente') }}" method="POST">
+
+    <label>Nome</label>
+    <input type="text" name="nome" required>
+
+    <label>Cognome</label>
+    <input type="text" name="cognome" required>
+
+    <label>Data di nascita</label>
+    <input type="date" name="data_nascita" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Telefono</label>
+    <input type="text" name="telefono" required>
+
+    <label>Indirizzo</label>
+    <input type="text" name="indirizzo" required>
+
+    <label>Filiale</label>
+    <select name="filiale" required>
+        <option value="Milano">Milano</option>
+        <option value="Varese">Varese</option>
+        <option value="Monza">Monza</option>
+    </select>
+
+    <label>Allergie</label>
+    <label class="radio"><input type="radio" name="allergie" value="Si"> Si</label>
+    <label class="radio"><input type="radio" name="allergie" value="No"> No</label>
+
+    <label>Note</label>
+    <textarea name="note"></textarea>
+
+    <label>Dottore</label>
+    <!-- [FONTE] Progetto 19 – JOIN templates/studenti.html righe 13-23: select con le righe di un'altra tabella (dottori). -->
+    <select name="dottori_id" required>
+
+        <option value="">Seleziona dottore</option>
+
+        {% for dottore in dottori %}
+
+        <option value="{{ dottore[0] }}">
+            {{ dottore[1] }} {{ dottore[2] }}
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <button type="submit">Salva</button>
+    <button type="reset">Annulla</button>
+
+</form>
+
+<h2>Elenco pazienti</h2>
+
+{% for p in paziente %}
+
+<p>ID: {{ p[0] }}</p>
+<p>Nome: {{ p[1] }}</p>
+<p>Cognome: {{ p[2] }}</p>
+<p>Data di nascita: {{ p[3] }}</p>
+<p>Email: {{ p[4] }}</p>
+<p>Telefono: {{ p[5] }}</p>
+<p>Filiale: {{ p[7] }}</p>
+<p>Dottore: {{ p[10] }} {{ p[11] }}</p>
+
+<a href="{{ url_for('durka_route.scheda', id=p[0]) }}">Scheda</a>
+<a href="{{ url_for('durka_route.delete_paziente', id=p[0]) }}">Elimina</a>
+
+<hr>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,487 @@
+{% extends "base.html" %}
+{% from "_icone.html" import icona %}
+
+{% block titolo %}Med.Expert, clinica privata a Milano{% endblock %}
+
+{% block pagina %}
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+    <div class="contenitore hero-griglia">
+
+        <div>
+            <span class="etichetta">{{ icona("ospedale") }} Poliambulatorio privato a Milano</span>
+
+            <h1>La tua salute, <em>in mani esperte</em></h1>
+
+            <p class="hero-testo">
+                Visite specialistiche, diagnostica ed esami in un unico centro.
+                Prenoti online in pochi minuti e trovi lo specialista giusto per te.
+            </p>
+
+            <div class="hero-azioni">
+                <a href="{{ url_for('durka_route.prenota') }}" class="btn btn-accento btn-grande">
+                    {{ icona("calendario") }} Prenota una visita
+                </a>
+                {% if session.get("utente_id") %}
+                <a href="{{ url_for('durka_route.chat') }}" class="btn btn-light btn-grande">
+                    {{ icona("scintille") }} Chiedi all'assistente IA
+                </a>
+                {% else %}
+                <a href="{{ url_for('durka_route.assistente') }}" class="btn btn-light btn-grande">
+                    {{ icona("chat") }} Chiedi all'assistente
+                </a>
+                {% endif %}
+            </div>
+
+            <div class="hero-fiducia">
+                <div class="fiducia">
+                    <span class="fiducia-icona">{{ icona("stella") }}</span>
+                    <div><strong>4,9 su 5</strong>1.200 recensioni</div>
+                </div>
+                <div class="fiducia">
+                    <span class="fiducia-icona">{{ icona("scudo") }}</span>
+                    <div><strong>Convenzionata SSN</strong>e con le assicurazioni</div>
+                </div>
+                <div class="fiducia">
+                    <span class="fiducia-icona">{{ icona("documento") }}</span>
+                    <div><strong>Referti online</strong>da 3 a 7 giorni</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visivo">
+            <div class="hero-foto">
+                <img src="{{ url_for('static', filename='img/medici.svg') }}"
+                     alt="Tre medici sorridenti in camice: una dottoressa davanti e due colleghi dietro">
+            </div>
+
+            <div class="scheda-fluttuante scheda-1">
+                <span class="cerchio">{{ icona("spunta-cerchio") }}</span>
+                <div><strong>Visita confermata</strong>Domani, ore 10:30</div>
+            </div>
+
+            <div class="scheda-fluttuante scheda-2">
+                <span class="cerchio corallo">{{ icona("cuore") }}</span>
+                <div><strong>30+ specialisti</strong>in 4 reparti</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ============================================================
+     AZIONI RAPIDE
+     ============================================================ -->
+<section class="azioni-rapide">
+    <div class="contenitore">
+        <div class="azioni-griglia">
+
+            <a href="{{ url_for('durka_route.prenota') }}" class="azione">
+                <span class="azione-icona">{{ icona("calendario") }}</span>
+                <div>
+                    <h3>Prenota una visita</h3>
+                    <p>Scegli medico, giorno e orario</p>
+                </div>
+            </a>
+
+            <a href="#specializzazioni" class="azione">
+                <span class="azione-icona">{{ icona("provetta") }}</span>
+                <div>
+                    <h3>Esami e prelievi</h3>
+                    <p>Dal lunedì al sabato, dalle 06:30</p>
+                </div>
+            </a>
+
+            <a href="{{ url_for('durka_route.chat') if session.get('utente_id') else url_for('durka_route.assistente') }}" class="azione">
+                <span class="azione-icona">{{ icona("chat") }}</span>
+                <div>
+                    <h3>Assistente virtuale</h3>
+                    <p>Orari, prezzi e informazioni</p>
+                </div>
+            </a>
+
+            <a href="#contatti" class="azione">
+                <span class="azione-icona">{{ icona("telefono") }}</span>
+                <div>
+                    <h3>Contattaci</h3>
+                    <p>+39 02 1234567</p>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     SPECIALIZZAZIONI
+     ============================================================ -->
+<section class="sezione" id="specializzazioni">
+    <div class="contenitore">
+
+        <div class="intestazione-sezione intestazione-riga">
+            <div>
+                <span class="etichetta">{{ icona("stetoscopio") }} Reparti</span>
+                <h2 class="section-title">Le nostre specializzazioni</h2>
+                <p class="section-description">
+                    Un'équipe multidisciplinare con percorsi di cura dedicati
+                    alle diverse esigenze dei pazienti.
+                </p>
+            </div>
+            <a href="{{ url_for('durka_route.prenota') }}" class="btn btn-light">
+                Tutte le visite {{ icona("freccia") }}
+            </a>
+        </div>
+
+        <div class="specializations">
+
+            <div class="specialization">
+                <div class="specialization-icon">{{ icona("cuore") }}</div>
+                <h3>Cardiologia</h3>
+                <p>Visite, elettrocardiogramma ed ecocardiogramma per la salute del cuore.</p>
+                <a href="{{ url_for('durka_route.prenota') }}" class="link-freccia">Prenota {{ icona("freccia") }}</a>
+            </div>
+
+            <div class="specialization">
+                <div class="specialization-icon">{{ icona("osso") }}</div>
+                <h3>Ortopedia</h3>
+                <p>Diagnosi e cura di ossa, articolazioni e apparato muscolo-scheletrico.</p>
+                <a href="{{ url_for('durka_route.prenota') }}" class="link-freccia">Prenota {{ icona("freccia") }}</a>
+            </div>
+
+            <div class="specialization">
+                <div class="specialization-icon">{{ icona("pelle") }}</div>
+                <h3>Dermatologia</h3>
+                <p>Controllo dei nei, visite dermatologiche e cura della pelle.</p>
+                <a href="{{ url_for('durka_route.prenota') }}" class="link-freccia">Prenota {{ icona("freccia") }}</a>
+            </div>
+
+            <div class="specialization">
+                <div class="specialization-icon">{{ icona("provetta") }}</div>
+                <h3>Centro prelievi</h3>
+                <p>Esami del sangue senza prenotazione, con referti online.</p>
+                <a href="#domande" class="link-freccia">Orari e tempi {{ icona("freccia") }}</a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ============================================================
+     NUMERI
+     ============================================================ -->
+<section class="numbers">
+    <div class="contenitore numeri-griglia">
+        <div class="number"><h2>15+</h2><p>Specializzazioni</p></div>
+        <div class="number"><h2>30+</h2><p>Professionisti</p></div>
+        <div class="number"><h2>10K+</h2><p>Pazienti assistiti</p></div>
+        <div class="number"><h2>20+</h2><p>Anni di esperienza</p></div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     COME FUNZIONA
+     ============================================================ -->
+<section class="sezione sezione-menta">
+    <div class="contenitore">
+
+        <div class="intestazione-sezione centrata">
+            <span class="etichetta">{{ icona("lista") }} Come funziona</span>
+            <h2 class="section-title">Prenotare è semplice</h2>
+            <p class="section-description">Tre passi e la visita è fissata. Senza code e senza telefonate.</p>
+        </div>
+
+        <div class="passi">
+            <div class="passo">
+                <span class="passo-numero">01</span>
+                <span class="azione-icona">{{ icona("utente") }}</span>
+                <h3>Crea il tuo account</h3>
+                <p>Bastano username e password. Subito dopo hai accesso all'area pazienti.</p>
+            </div>
+            <div class="passo">
+                <span class="passo-numero">02</span>
+                <span class="azione-icona">{{ icona("calendario") }}</span>
+                <h3>Scegli medico e orario</h3>
+                <p>Indica il reparto, lo specialista e il momento più comodo per te.</p>
+            </div>
+            <div class="passo">
+                <span class="passo-numero">03</span>
+                <span class="azione-icona">{{ icona("documento") }}</span>
+                <h3>Visita e referto</h3>
+                <p>Vieni in clinica all'orario fissato. Il referto è pronto in pochi giorni.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ============================================================
+     SERVIZI
+     ============================================================ -->
+<section class="sezione sezione-chiara" id="servizi">
+    <div class="contenitore">
+
+        <div class="intestazione-sezione">
+            <span class="etichetta">{{ icona("croce") }} Servizi</span>
+            <h2 class="section-title">Tutto quello che ti serve, in un posto solo</h2>
+            <p class="section-description">Un approccio completo alla cura e alla prevenzione.</p>
+        </div>
+
+        <div class="servizi-griglia">
+            <div class="service">
+                <div class="service-icon">{{ icona("stetoscopio") }}</div>
+                <div>
+                    <h3>Visite specialistiche</h3>
+                    <p>Consulti con professionisti delle principali discipline mediche.</p>
+                </div>
+            </div>
+            <div class="service">
+                <div class="service-icon">{{ icona("microscopio") }}</div>
+                <div>
+                    <h3>Diagnostica</h3>
+                    <p>Strumenti e tecnologie moderne per un percorso diagnostico preciso.</p>
+                </div>
+            </div>
+            <div class="service">
+                <div class="service-icon">{{ icona("provetta") }}</div>
+                <div>
+                    <h3>Esami di laboratorio</h3>
+                    <p>Esami del sangue base, per il diabete e pacchetti preparto.</p>
+                </div>
+            </div>
+            <div class="service">
+                <div class="service-icon">{{ icona("persone") }}</div>
+                <div>
+                    <h3>Assistenza</h3>
+                    <p>Personale disponibile ad accompagnarti in ogni fase del percorso.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ============================================================
+     DOTTORI
+     ============================================================ -->
+<section class="sezione" id="dottori">
+    <div class="contenitore">
+
+        <div class="intestazione-sezione intestazione-riga">
+            <div>
+                <span class="etichetta">{{ icona("persone") }} Équipe</span>
+                <h2 class="section-title">I nostri dottori</h2>
+                <p class="section-description">Professionisti con competenze complementari e un approccio multidisciplinare.</p>
+            </div>
+        </div>
+
+        <div class="team">
+            <div class="doctor">
+                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80" alt="Dott. Francesco Victoria" loading="lazy">
+                <div class="doctor-content">
+                    <h3>Dott. Francesco Victoria</h3>
+                    <p>Cardiologia</p>
+                </div>
+            </div>
+            <div class="doctor">
+                <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80" alt="Dott.ssa Laura Bianchi" loading="lazy">
+                <div class="doctor-content">
+                    <h3>Dott.ssa Laura Bianchi</h3>
+                    <p>Dermatologia</p>
+                </div>
+            </div>
+            <div class="doctor">
+                <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=600&q=80" alt="Dott. Marco Rossi" loading="lazy">
+                <div class="doctor-content">
+                    <h3>Dott. Marco Rossi</h3>
+                    <p>Ortopedia</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ============================================================
+     RECENSIONI
+     ============================================================ -->
+<section class="sezione sezione-chiara">
+    <div class="contenitore">
+
+        <div class="intestazione-sezione centrata">
+            <span class="etichetta">{{ icona("stella") }} Recensioni</span>
+            <h2 class="section-title">L'esperienza dei nostri pazienti</h2>
+        </div>
+
+        <div class="reviews">
+            {% for testo, nome, reparto in [
+                ("Struttura moderna e personale molto disponibile. Mi sono sentito seguito con grande attenzione.", "Marco R.", "Cardiologia"),
+                ("Ambiente accogliente e medici molto professionali. Ho prenotato online in due minuti.", "Anna B.", "Dermatologia"),
+                ("Organizzazione efficiente e grande disponibilità dello staff. I referti sono arrivati presto.", "Luca V.", "Centro prelievi")
+            ] %}
+            <div class="review">
+                <span class="stelle">{% for i in range(5) %}{{ icona("stella") }}{% endfor %}</span>
+                <p>{{ testo }}</p>
+                <div class="review-autore">
+                    <span class="iniziale">{{ nome[0] }}</span>
+                    <div><strong>{{ nome }}</strong><small>{{ reparto }}</small></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ============================================================
+     ASSISTENTE
+     ============================================================ -->
+<section class="sezione">
+    <div class="contenitore">
+        <div class="banner-assistente">
+
+            <div>
+                <span class="etichetta">{{ icona("scintille") }} Assistente virtuale</span>
+                <h2>Una domanda? Ti rispondiamo subito, anche di notte</h2>
+                {% if session.get("utente_id") %}
+                <p>Il nostro assistente IA risponde in italiano, inglese, russo, arabo e cinese. Spiega in modo semplice orari, esami e preparazione alle visite.</p>
+                <a href="{{ url_for('durka_route.chat') }}" class="btn btn-accento btn-grande">
+                    {{ icona("scintille") }} Apri l'assistente IA
+                </a>
+                {% else %}
+                <p>Orari, prezzi degli esami, reparti e contatti: scegli la domanda e ricevi la risposta. Dopo la registrazione puoi scrivere liberamente all'assistente IA.</p>
+                <div class="hero-azioni">
+                    <a href="{{ url_for('durka_route.assistente') }}" class="btn btn-accento btn-grande">
+                        {{ icona("chat") }} Apri l'assistente
+                    </a>
+                    <a href="{{ url_for('durka_route.register') }}" class="btn btn-trasparente btn-grande">
+                        Registrati gratis
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="anteprima-chat">
+                <div class="bolla-riga utente">
+                    <div class="bolla bolla-utente">A che ora apre il centro prelievi?</div>
+                </div>
+                <div class="bolla-riga">
+                    <span class="mini-avatar">{{ icona("robot") }}</span>
+                    <div class="bolla bolla-bot">Il centro prelievi è aperto dalle 06:30 alle 13:00, dal lunedì al sabato. Non serve prenotare.</div>
+                </div>
+                <div class="bolla-riga utente">
+                    <div class="bolla bolla-utente">E quando arrivano i risultati?</div>
+                </div>
+                <div class="bolla-riga">
+                    <span class="mini-avatar">{{ icona("robot") }}</span>
+                    <div class="bolla bolla-bot">Da 3 giorni per gli esami base fino a 7 per gli esami preparto.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     DOMANDE FREQUENTI
+     ============================================================ -->
+<section class="sezione sezione-chiara" id="domande">
+    <div class="contenitore">
+
+        <div class="intestazione-sezione centrata">
+            <span class="etichetta">{{ icona("info") }} Domande frequenti</span>
+            <h2 class="section-title">Prima di venire in clinica</h2>
+        </div>
+
+        <div class="faq">
+            <details open>
+                <summary>Devo prenotare per gli esami del sangue? {{ icona("piu") }}</summary>
+                <p>No. Il centro prelievi è aperto dalle 06:30 alle 13:00 e si accede senza prenotazione. Per le visite specialistiche invece serve l'appuntamento.</p>
+            </details>
+            <details>
+                <summary>Quanto tempo serve per avere i risultati? {{ icona("piu") }}</summary>
+                <p>I tempi sono indicati nella ricevuta: da 3 giorni per gli esami base fino a 7 giorni per gli esami preparto.</p>
+            </details>
+            <details>
+                <summary>Quali pagamenti accettate? {{ icona("piu") }}</summary>
+                <p>Contanti e carte di credito Visa, Mastercard e American Express. Siamo accreditati con il Servizio Sanitario Nazionale.</p>
+            </details>
+            <details>
+                <summary>Quali sono gli orari delle visite? {{ icona("piu") }}</summary>
+                <p>Le visite si svolgono dalle 08:30 alle 19:00, i ricoveri dalle 11:00 alle 16:30.</p>
+            </details>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ============================================================
+     CONTATTI
+     ============================================================ -->
+<section class="sezione" id="contatti">
+    <div class="contenitore">
+
+        <div class="intestazione-sezione centrata">
+            <span class="etichetta">{{ icona("posizione") }} Contatti</span>
+            <h2 class="section-title">Siamo a tua disposizione</h2>
+            <p class="section-description">Per informazioni e appuntamenti scrivici, chiamaci o passa in clinica.</p>
+        </div>
+
+        <div class="contact">
+            <div class="contact-box">
+                <span class="azione-icona">{{ icona("posizione") }}</span>
+                <h3>Dove siamo</h3>
+                <p>Via Roma 100<br>20121 Milano, Italia</p>
+            </div>
+            <div class="contact-box">
+                <span class="azione-icona">{{ icona("telefono") }}</span>
+                <h3>Telefono ed email</h3>
+                <p>+39 02 1234567<br>info@medexpert.it</p>
+            </div>
+            <div class="contact-box">
+                <span class="azione-icona">{{ icona("orologio") }}</span>
+                <h3>Orari</h3>
+                <ul class="orari">
+                    <li>Lunedì-Venerdì <strong>08:00-19:00</strong></li>
+                    <li>Sabato <strong>08:00-13:00</strong></li>
+                    <li>Domenica <strong>Chiuso</strong></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ============================================================
+     CALL TO ACTION
+     ============================================================ -->
+<section class="cta">
+    <h2>Prenditi cura della tua salute</h2>
+    <p>Prenota la tua visita online, ci vogliono pochi minuti.</p>
+    <div class="hero-azioni">
+        <a href="{{ url_for('durka_route.prenota') }}" class="btn btn-accento btn-grande">
+            {{ icona("calendario") }} Prenota una visita
+        </a>
+        {% if not session.get("utente_id") %}
+        <a href="{{ url_for('durka_route.register') }}" class="btn btn-light btn-grande">
+            Crea un account
+        </a>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

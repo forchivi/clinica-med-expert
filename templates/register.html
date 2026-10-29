@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% from "_icone.html" import icona %}
+
+{% block titolo %}Registrati, Med.Expert{% endblock %}
+
+{% block pagina %}
+<section class="accesso">
+    <div class="accesso-scheda">
+
+        <div class="accesso-lato">
+            <span class="etichetta">{{ icona("croce") }} Area pazienti</span>
+            <h2>Crea il tuo account in un minuto</h2>
+            <p>Bastano username e password. Subito dopo entri nell'area pazienti.</p>
+            <ul class="vantaggi">
+                <li>{{ icona("spunta-cerchio") }} Prenoti le visite online, senza telefonare</li>
+                <li>{{ icona("spunta-cerchio") }} Parli con l'assistente IA quando vuoi</li>
+                <li>{{ icona("spunta-cerchio") }} Ritrovi lo storico delle tue domande</li>
+            </ul>
+        </div>
+
+        <div class="accesso-modulo">
+            <h1>Registrazione</h1>
+            <p>Hai già un account? <a href="{{ url_for('durka_route.login') }}">Accedi</a></p>
+
+            <form action="{{ url_for('durka_route.register') }}" method="POST">
+
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" value="{{ username or '' }}"
+                       placeholder="es. mario.rossi" autocomplete="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" minlength="6"
+                       placeholder="Almeno 6 caratteri" autocomplete="new-password" required>
+
+                <label for="conferma">Ripeti la password</label>
+                <input type="password" id="conferma" name="conferma" minlength="6"
+                       autocomplete="new-password" required>
+
+                <button type="submit">Crea account {{ icona("freccia") }}</button>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

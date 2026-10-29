@@ -1,0 +1,177 @@
+{% from "_icone.html" import icona %}
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titolo %}Clinica Privata Med.Expert{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="barra-info">
+        <div class="contenitore">
+            <div>
+                <span>{{ icona("posizione") }} Via Roma 100, Milano</span>
+                <span>{{ icona("orologio") }} Lun-Ven 08:00-19:00, Sab 08:00-13:00</span>
+            </div>
+            <span>{{ icona("telefono") }} +39 02 1234567</span>
+        </div>
+    </div>
+
+    <!-- [FONTE] url_for('durka_route.nome'): con il blueprint il nome della route ha il prefisso,
+         come url_for('main.chat') in Modulo_4_ IA/Esercizio 25 /templates/base.html righe 34-41. -->
+    <header class="intestazione">
+        <nav class="contenitore">
+
+            <a href="{{ url_for('durka_route.index') }}" class="logo">
+                <span class="logo-segno">{{ icona("croce") }}</span>
+                <span>Med.Expert<small>Clinica privata</small></span>
+            </a>
+
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="menu-bottone" aria-label="Apri il menu">{{ icona("menu") }}</label>
+
+            <ul class="menu">
+
+                {% if session.get("utente_id") %}
+
+                <!-- [FONTE] Progetto 16 views/base.html riga 41: Pazienti e Utenti solo per l'admin. -->
+                {% if session.get("ruolo") == "admin" %}
+                <li><a href="{{ url_for('durka_route.select') }}">Pazienti</a></li>
+                <li><a href="{{ url_for('durka_route.utenti') }}">Utenti</a></li>
+                {% endif %}
+
+                <li><a href="{{ url_for('durka_route.dottori') }}">Dottori</a></li>
+                <li><a href="{{ url_for('durka_route.servizi') }}">Servizi</a></li>
+                <li><a href="{{ url_for('durka_route.prenota') }}">Appuntamenti</a></li>
+
+                <!-- Dopo il login: assistente con intelligenza artificiale (Groq, Esercizio 25). -->
+                <li>
+                    <a href="{{ url_for('durka_route.chat') }}" class="link-assistente">
+                        {{ icona("scintille") }} Assistente IA
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('durka_route.profilo') }}" class="btn btn-light">
+                        {{ icona("utente") }} {{ session.get("username") }}
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('durka_route.logout') }}" class="btn btn-primary">
+                        Esci
+                    </a>
+                </li>
+
+                {% else %}
+
+                <li><a href="{{ url_for('durka_route.index') }}#specializzazioni">Specializzazioni</a></li>
+                <li><a href="{{ url_for('durka_route.index') }}#dottori">Dottori</a></li>
+                <li><a href="{{ url_for('durka_route.index') }}#contatti">Contatti</a></li>
+
+                <!-- Senza login: assistente statico con le risposte dal database (Esercizio 23). -->
+                <li>
+                    <a href="{{ url_for('durka_route.assistente') }}" class="link-assistente">
+                        {{ icona("chat") }} Assistente
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('durka_route.login') }}" class="btn btn-light">
+                        Accedi
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('durka_route.register') }}" class="btn btn-primary">
+                        Registrati
+                    </a>
+                </li>
+
+                {% endif %}
+
+            </ul>
+
+        </nav>
+    </header>
+
+    <!-- [FONTE] Modulo_4_ IA/Esercizio 25 /templates/base.html righe 49-57: mostra i messaggi flash. -->
+    {% with messaggi = get_flashed_messages(with_categories=true) %}
+        {% if messaggi %}
+        <div class="messaggi">
+            {% for categoria, messaggio in messaggi %}
+                <div class="avviso {{ categoria }}">
+                    {% if categoria == "error" %}{{ icona("info") }}{% else %}{{ icona("spunta-cerchio") }}{% endif %}
+                    {{ messaggio }}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    {% block pagina %}
+    <main class="pagina">
+        {% block contenuto %}
+        {% endblock %}
+    </main>
+    {% endblock %}
+
+    <footer>
+        <div class="contenitore">
+
+            <div class="footer-griglia">
+
+                <div class="footer-column">
+                    <a href="{{ url_for('durka_route.index') }}" class="logo">
+                        <span class="logo-segno">{{ icona("croce") }}</span>
+                        <span>Med.Expert<small>Clinica privata</small></span>
+                    </a>
+                    <p>Visite specialistiche, diagnostica ed esami in un unico centro a Milano.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>La clinica</h3>
+                    <a href="{{ url_for('durka_route.index') }}#specializzazioni">Specializzazioni</a>
+                    <a href="{{ url_for('durka_route.index') }}#servizi">Servizi</a>
+                    <a href="{{ url_for('durka_route.index') }}#dottori">Dottori</a>
+                    <a href="{{ url_for('durka_route.index') }}#domande">Domande frequenti</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Area pazienti</h3>
+                    {% if session.get("utente_id") %}
+                    <a href="{{ url_for('durka_route.profilo') }}">Il mio profilo</a>
+                    <a href="{{ url_for('durka_route.prenota') }}">Prenota una visita</a>
+                    <a href="{{ url_for('durka_route.chat') }}">Assistente IA</a>
+                    {% else %}
+                    <a href="{{ url_for('durka_route.login') }}">Accedi</a>
+                    <a href="{{ url_for('durka_route.register') }}">Registrati</a>
+                    <a href="{{ url_for('durka_route.assistente') }}">Assistente</a>
+                    {% endif %}
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contatti</h3>
+                    <p>{{ icona("posizione") }} Via Roma 100, Milano</p>
+                    <p>{{ icona("telefono") }} +39 02 1234567</p>
+                    <p>{{ icona("email") }} info@medexpert.it</p>
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                © 2026 Clinica Privata Med.Expert. Progetto didattico, i dati sono di esempio.
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>

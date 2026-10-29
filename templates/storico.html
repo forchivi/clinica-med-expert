@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% from "_icone.html" import icona %}
+
+{% block titolo %}Storico, Med.Expert{% endblock %}
+
+{% block pagina %}
+
+<!-- [FONTE] Modulo_4_ IA/Esercizio 25 /templates/storico.html: ultime 10 conversazioni dal database. -->
+
+<section class="area">
+
+    <div class="area-titolo">
+        <div>
+            <h1>Il tuo storico</h1>
+            <p>Le ultime dieci conversazioni con l'assistente IA, dalla più recente.</p>
+        </div>
+        <a href="{{ url_for('durka_route.chat') }}" class="btn btn-primary">{{ icona("chat") }} Torna alla chat</a>
+    </div>
+
+    {% if risultati %}
+
+    {% for elemento in risultati %}
+    <article class="voce-storico">
+        <time>{{ icona("orologio") }} {{ elemento[3] }}</time>
+        <p class="domanda">{{ elemento[1] }}</p>
+        <p class="risposta">{{ elemento[2] }}</p>
+    </article>
+    {% endfor %}
+
+    {% else %}
+
+    <div class="vuoto">
+        <p>Non hai ancora conversazioni salvate.</p>
+    </div>
+
+    {% endif %}
+
+</section>
+{% endblock %}

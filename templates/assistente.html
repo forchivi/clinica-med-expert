@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% from "_icone.html" import icona %}
+
+{% block titolo %}Assistente virtuale, Med.Expert{% endblock %}
+
+{% block pagina %}
+
+<!-- [FONTE] Modulo_4_ IA/Esercizio 23/templates/index.html righe 50-180: menu con i numeri e risposta
+     presa dal database (righe, lista e messaggio). Qui il menu e mostrato come una chat. -->
+
+{% set opzioni = [
+    ("1", "Informazioni generali", "info"),
+    ("2", "Orari di apertura", "orologio"),
+    ("3", "Prelievi, visite e ricoveri", "provetta"),
+    ("4", "Tempi dei risultati", "documento"),
+    ("5", "Prezzi e pagamenti", "euro"),
+    ("6", "Reparti", "ospedale"),
+    ("7", "Contatti", "telefono")
+] %}
+
+<section class="assistente">
+
+    <div class="chat-finestra">
+
+        <div class="chat-testata">
+            <span class="avatar-bot">{{ icona("robot") }}</span>
+            <div>
+                <h1>Assistente {{ nome_clinica }}</h1>
+                <p><span class="pallino-online"></span> Risposte immediate dal nostro database</p>
+            </div>
+            {% if scelta %}
+            <a href="{{ url_for('durka_route.assistente') }}" class="btn btn-trasparente">{{ icona("ricomincia") }} Ricomincia</a>
+            {% endif %}
+        </div>
+
+        <div class="chat-messaggi senza-scorrimento">
+
+            <div class="bolla-riga">
+                <span class="mini-avatar">{{ icona("robot") }}</span>
+                <div class="bolla bolla-bot">Ciao! Sono l'assistente virtuale di {{ nome_clinica }}. Come posso aiutarti? Scegli un argomento qui sotto.</div>
+            </div>
+
+            {% if titolo %}
+
+            <!-- domanda scelta dall'utente -->
+            {% for numero, testo, nome_icona in opzioni if numero == scelta %}
+            <div class="bolla-riga utente">
+                <div class="bolla bolla-utente">{{ testo }}</div>
+            </div>
+            {% else %}
+            {% if scelta == "0" %}
+            <div class="bolla-riga utente">
+                <div class="bolla bolla-utente">Ho finito, grazie</div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+            <!-- risposta presa dal database -->
+            <div class="bolla-riga">
+                <span class="mini-avatar">{{ icona("robot") }}</span>
+                <div class="bolla bolla-bot">
+                    <h3>{{ titolo }}</h3>
+
+                    {% if righe %}
+                    <ul class="bolla-righe">
+                        {% for etichetta, valore in righe %}
+                        <li><span>{{ etichetta }}</span> <strong>{{ valore }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    {% if lista %}
+                    <ul class="bolla-righe">
+                        {% for elemento in lista %}
+                        <li><strong>{{ elemento }}</strong></li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
+                    {% if messaggio %}
+                    <p class="bolla-nota">{{ messaggio }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if not uscita %}
+            <div class="bolla-riga">
+                <span class="mini-avatar">{{ icona("robot") }}</span>
+                <div class="bolla bolla-bot">Posso aiutarti con altro?</div>
+            </div>
+            {% endif %}
+
+            {% endif %}
+
+            {% if not uscita %}
+            <form method="POST" class="opzioni">
+                {% for numero, testo, nome_icona in opzioni %}
+                <button type="submit" name="scelta" value="{{ numero }}" class="opzione">
+                    {{ icona(nome_icona) }} {{ testo }}
+                </button>
+                {% endfor %}
+                <button type="submit" name="scelta" value="0" class="opzione esci">
+                    {{ icona("esci") }} Ho finito
+                </button>
+            </form>
+            {% else %}
+            <div class="opzioni">
+                <a href="{{ url_for('durka_route.index') }}" class="btn btn-light">Torna alla home</a>
+                <a href="{{ url_for('durka_route.assistente') }}" class="btn btn-primary">{{ icona("ricomincia") }} Nuova conversazione</a>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <aside class="laterale">
+
+        {% if session.get("utente_id") %}
+        <div class="laterale-scheda evidenza">
+            <h2>{{ icona("scintille") }} Assistente IA</h2>
+            <p>Hai una domanda diversa? Scrivila con parole tue: l'assistente IA ti risponde in cinque lingue.</p>
+            <a href="{{ url_for('durka_route.chat') }}" class="btn btn-accento">Apri l'assistente IA</a>
+        </div>
+        {% else %}
+        <div class="laterale-scheda evidenza">
+            <h2>{{ icona("scintille") }} Vuoi scrivere liberamente?</h2>
+            <p>Dopo la registrazione puoi fare qualsiasi domanda all'assistente con intelligenza artificiale, in italiano, inglese, russo, arabo o cinese.</p>
+            <a href="{{ url_for('durka_route.register') }}" class="btn btn-accento">Registrati gratis</a>
+            <a href="{{ url_for('durka_route.login') }}" class="btn btn-trasparente">Ho già un account</a>
+        </div>
+        {% endif %}
+
+        <div class="laterale-scheda">
+            <h2>{{ icona("telefono") }} Preferisci parlare con noi?</h2>
+            <p>La reception risponde dal lunedì al venerdì dalle 08:00 alle 19:00 e il sabato fino alle 13:00.</p>
+            <a href="tel:+39021234567" class="btn btn-light">+39 02 1234567</a>
+        </div>
+
+    </aside>
+
+</section>
+{% endblock %}

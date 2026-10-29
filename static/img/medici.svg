@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 570" role="img" aria-labelledby="titolo">
+  <title id="titolo">Tre medici sorridenti in camice: una dottoressa davanti e due colleghi dietro</title>
+  <defs>
+    <linearGradient id="sfondo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E4F3F0"/>
+      <stop offset="1" stop-color="#C5E3DE"/>
+    </linearGradient>
+    <linearGradient id="camice" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#EEF3F3"/>
+    </linearGradient>
+    <linearGradient id="camiceDietro" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F8FBFB"/>
+      <stop offset="1" stop-color="#E3ECEC"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sfondo -->
+  <rect width="600" height="570" fill="url(#sfondo)"/>
+  <circle cx="300" cy="300" r="225" fill="#FFFFFF" opacity="0.45"/>
+  <circle cx="300" cy="300" r="160" fill="#FFFFFF" opacity="0.35"/>
+  <g fill="#4B9C9A" opacity="0.35">
+    <path d="M84 96h10v-10h8v10h10v8h-10v10h-8v-10H84z"/>
+    <path d="M500 70h8v-8h6v8h8v6h-8v8h-6v-8h-8z"/>
+    <path d="M520 360h10v-10h8v10h10v8h-10v10h-8v-10h-10z"/>
+  </g>
+  <path d="M40 210h60l14-26 22 52 16-26h50" fill="none" stroke="#2F8F8B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.25"/>
+
+  <!-- ===================== MEDICO A SINISTRA ===================== -->
+  <g>
+    <!-- camice -->
+    <path d="M60 570 L72 340 Q78 292 160 280 Q242 292 248 340 L260 570 Z" fill="url(#camiceDietro)" stroke="#D3DFDF" stroke-width="2"/>
+    <!-- divisa sotto -->
+    <path d="M136 282 L160 336 L184 282 Z" fill="#2F8F8B"/>
+    <!-- revers -->
+    <path d="M136 282 L152 380 L160 336 Z" fill="#E7EFEF"/>
+    <path d="M184 282 L168 380 L160 336 Z" fill="#E7EFEF"/>
+    <path d="M160 336 L160 570" stroke="#D3DFDF" stroke-width="2"/>
+    <!-- taschino e penna -->
+    <rect x="186" y="392" width="38" height="30" rx="4" fill="none" stroke="#D3DFDF" stroke-width="2"/>
+    <rect x="196" y="378" width="5" height="22" rx="2" fill="#0B5963"/>
+    <!-- collo -->
+    <path d="M145 236 h30 v50 q-15 12 -30 0 z" fill="#C98E6A"/>
+    <!-- orecchie -->
+    <circle cx="110" cy="196" r="11" fill="#D49A75"/>
+    <circle cx="210" cy="196" r="11" fill="#D49A75"/>
+    <!-- testa -->
+    <ellipse cx="160" cy="190" rx="50" ry="56" fill="#D9A37E"/>
+    <!-- capelli corti brizzolati -->
+    <path d="M110 186 Q106 128 160 126 Q216 126 212 186 Q206 158 188 150 Q160 166 128 152 Q114 162 110 186 Z" fill="#6E655E"/>
+    <!-- occhiali -->
+    <g fill="none" stroke="#2C3E44" stroke-width="3">
+      <circle cx="141" cy="192" r="13"/>
+      <circle cx="179" cy="192" r="13"/>
+      <path d="M154 192 h12"/>
+    </g>
+    <!-- occhi sorridenti -->
+    <path d="M135 194 q6 -6 12 0" fill="none" stroke="#1E2A2E" stroke-width="3" stroke-linecap="round"/>
+    <path d="M173 194 q6 -6 12 0" fill="none" stroke="#1E2A2E" stroke-width="3" stroke-linecap="round"/>
+    <!-- guance -->
+    <circle cx="128" cy="214" r="8" fill="#E9897A" opacity="0.3"/>
+    <circle cx="192" cy="214" r="8" fill="#E9897A" opacity="0.3"/>
+    <!-- sorriso -->
+    <path d="M140 216 Q160 238 180 216 Q160 224 140 216 Z" fill="#8C3B33"/>
+    <path d="M144 218 Q160 223 176 218 L174 221 Q160 226 146 221 Z" fill="#FFFFFF"/>
+  </g>
+
+  <!-- ===================== MEDICO A DESTRA ===================== -->
+  <g>
+    <path d="M340 570 L352 336 Q358 288 440 276 Q522 288 528 336 L540 570 Z" fill="url(#camiceDietro)" stroke="#D3DFDF" stroke-width="2"/>
+    <path d="M416 278 L440 330 L464 278 Z" fill="#7FB8D9"/>
+    <path d="M416 278 L432 376 L440 330 Z" fill="#E7EFEF"/>
+    <path d="M464 278 L448 376 L440 330 Z" fill="#E7EFEF"/>
+    <path d="M440 330 L440 570" stroke="#D3DFDF" stroke-width="2"/>
+    <!-- collo -->
+    <path d="M425 232 h30 v50 q-15 12 -30 0 z" fill="#E2AE88"/>
+    <circle cx="390" cy="190" r="11" fill="#E8B58F"/>
+    <circle cx="490" cy="190" r="11" fill="#E8B58F"/>
+    <ellipse cx="440" cy="184" rx="50" ry="56" fill="#F0C29D"/>
+    <!-- capelli scuri ondulati -->
+    <path d="M390 182 Q384 120 440 118 Q500 118 492 180 Q488 150 470 142 Q456 156 434 146 Q414 158 402 150 Q392 162 390 182 Z" fill="#2A211C"/>
+    <!-- barba corta -->
+    <path d="M396 196 Q400 244 440 246 Q480 244 484 196 Q478 226 440 228 Q402 226 396 196 Z" fill="#3A2E27" opacity="0.85"/>
+    <!-- occhi -->
+    <path d="M415 186 q7 -7 14 0" fill="none" stroke="#1E2A2E" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M451 186 q7 -7 14 0" fill="none" stroke="#1E2A2E" stroke-width="3.2" stroke-linecap="round"/>
+    <!-- sopracciglia -->
+    <path d="M412 172 q10 -6 20 -1" fill="none" stroke="#2A211C" stroke-width="3" stroke-linecap="round"/>
+    <path d="M448 171 q10 -5 20 1" fill="none" stroke="#2A211C" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="408" cy="206" r="8" fill="#E9897A" opacity="0.28"/>
+    <circle cx="472" cy="206" r="8" fill="#E9897A" opacity="0.28"/>
+    <!-- sorriso -->
+    <path d="M420 210 Q440 234 460 210 Q440 218 420 210 Z" fill="#8C3B33"/>
+    <path d="M424 212 Q440 217 456 212 L454 216 Q440 221 426 216 Z" fill="#FFFFFF"/>
+  </g>
+
+  <!-- ===================== DOTTORESSA DAVANTI ===================== -->
+  <g>
+    <!-- capelli lunghi dietro -->
+    <path d="M232 262 Q218 160 300 152 Q384 160 368 262 Q376 330 348 352 L252 352 Q224 330 232 262 Z" fill="#5A3A28"/>
+    <!-- camice -->
+    <path d="M170 570 L184 392 Q192 340 300 330 Q408 340 416 392 L430 570 Z" fill="url(#camice)" stroke="#D3DFDF" stroke-width="2"/>
+    <!-- divisa -->
+    <path d="M268 334 L300 400 L332 334 Z" fill="#0B5963"/>
+    <!-- revers -->
+    <path d="M268 334 L288 452 L300 400 Z" fill="#EEF3F3" stroke="#D3DFDF" stroke-width="1.5"/>
+    <path d="M332 334 L312 452 L300 400 Z" fill="#EEF3F3" stroke="#D3DFDF" stroke-width="1.5"/>
+    <path d="M300 452 L300 570" stroke="#D3DFDF" stroke-width="2"/>
+    <!-- collo -->
+    <path d="M284 280 h32 v54 q-16 14 -32 0 z" fill="#E9B993"/>
+    <!-- stetoscopio -->
+    <path d="M272 336 Q252 400 276 446" fill="none" stroke="#2C3E44" stroke-width="5" stroke-linecap="round"/>
+    <path d="M328 336 Q348 400 324 446" fill="none" stroke="#2C3E44" stroke-width="5" stroke-linecap="round"/>
+    <path d="M276 446 Q300 470 324 446" fill="none" stroke="#2C3E44" stroke-width="5" stroke-linecap="round"/>
+    <path d="M300 462 L300 486" stroke="#2C3E44" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="300" cy="498" r="14" fill="#B8C6CA" stroke="#2C3E44" stroke-width="4"/>
+    <!-- cartellino -->
+    <rect x="342" y="430" width="50" height="30" rx="5" fill="#E3F2EF" stroke="#4B9C9A" stroke-width="2"/>
+    <path d="M352 442 h30 M352 450 h20" stroke="#4B9C9A" stroke-width="3" stroke-linecap="round"/>
+    <!-- orecchie e orecchini -->
+    <circle cx="246" cy="236" r="11" fill="#E2AE88"/>
+    <circle cx="354" cy="236" r="11" fill="#E2AE88"/>
+    <circle cx="246" cy="250" r="4" fill="#E8C35C"/>
+    <circle cx="354" cy="250" r="4" fill="#E8C35C"/>
+    <!-- testa -->
+    <ellipse cx="300" cy="228" rx="54" ry="60" fill="#F2C9A5"/>
+    <!-- frangia -->
+    <path d="M246 222 Q240 160 300 158 Q362 160 354 222 Q346 186 320 178 Q296 204 254 206 Q248 212 246 222 Z" fill="#5A3A28"/>
+    <!-- sopracciglia -->
+    <path d="M268 210 q10 -5 20 0" fill="none" stroke="#5A3A28" stroke-width="3" stroke-linecap="round"/>
+    <path d="M312 210 q10 -5 20 0" fill="none" stroke="#5A3A28" stroke-width="3" stroke-linecap="round"/>
+    <!-- occhi sorridenti -->
+    <path d="M270 228 q8 -8 16 0" fill="none" stroke="#1E2A2E" stroke-width="3.4" stroke-linecap="round"/>
+    <path d="M314 228 q8 -8 16 0" fill="none" stroke="#1E2A2E" stroke-width="3.4" stroke-linecap="round"/>
+    <path d="M286 225 l4 -3 M330 225 l4 -3" stroke="#1E2A2E" stroke-width="2" stroke-linecap="round"/>
+    <!-- guance -->
+    <circle cx="262" cy="250" r="10" fill="#EC8A7C" opacity="0.35"/>
+    <circle cx="338" cy="250" r="10" fill="#EC8A7C" opacity="0.35"/>
+    <!-- sorriso -->
+    <path d="M276 254 Q300 284 324 254 Q300 264 276 254 Z" fill="#A23E3A"/>
+    <path d="M281 256 Q300 262 319 256 L316 261 Q300 267 284 261 Z" fill="#FFFFFF"/>
+  </g>
+</svg>

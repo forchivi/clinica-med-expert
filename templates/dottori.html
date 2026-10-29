@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block contenuto %}
+
+<h2>Dottori</h2>
+
+<!-- [FONTE] Progetto 16 views/base.html riga 41: il modulo per inserire si vede solo all'admin. -->
+{% if session.get("ruolo") == "admin" %}
+<h5>Inserisci un nuovo dottore</h5>
+
+<form action="{{ url_for('durka_route.dottore') }}" method="POST">
+
+    <label>Nome</label>
+    <input type="text" name="nome" required>
+
+    <label>Cognome</label>
+    <input type="text" name="cognome" required>
+
+    <label>Specializzazione</label>
+    <input type="text" name="specializzazione" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Telefono</label>
+    <input type="text" name="telefono" required>
+
+    <button type="submit">Inserisci dottore</button>
+
+</form>
+{% endif %}
+
+<h2>Elenco dottori</h2>
+
+{% for dottore in dottori %}
+
+<p>ID: {{ dottore[0] }}</p>
+<p>Nome: {{ dottore[1] }}</p>
+<p>Cognome: {{ dottore[2] }}</p>
+<p>Specializzazione: {{ dottore[3] }}</p>
+<p>Email: {{ dottore[4] }}</p>
+<p>Telefono: {{ dottore[5] }}</p>
+
+<!-- solo l'admin vede il link Elimina (stesso controllo di Progetto 16) -->
+{% if session.get("ruolo") == "admin" %}
+<a href="{{ url_for('durka_route.delete_dottore', id=dottore[0]) }}">Elimina</a>
+{% endif %}
+
+<hr>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% from "_icone.html" import icona %}
+
+{% block titolo %}Registrazione completata, Med.Expert{% endblock %}
+
+{% block pagina %}
+<section class="successo">
+    <div class="successo-scheda">
+
+        <div class="successo-icona">{{ icona("spunta") }}</div>
+
+        <h1>Registrazione completata</h1>
+        <p>Benvenuto in Med.Expert, <strong>{{ nome_utente }}</strong>. Il tuo account è attivo e hai già effettuato l'accesso.</p>
+
+        <div class="prossimi-passi">
+            <a href="{{ url_for('durka_route.chat') }}" class="prossimo">
+                <span class="azione-icona">{{ icona("scintille") }}</span>
+                <strong>Assistente IA</strong>
+                <span>Fai una domanda su visite, esami e orari</span>
+            </a>
+            <a href="{{ url_for('durka_route.prenota') }}" class="prossimo">
+                <span class="azione-icona">{{ icona("calendario") }}</span>
+                <strong>Prenota una visita</strong>
+                <span>Scegli medico, giorno e orario</span>
+            </a>
+            <a href="{{ url_for('durka_route.profilo') }}" class="prossimo">
+                <span class="azione-icona">{{ icona("utente") }}</span>
+                <strong>Il tuo profilo</strong>
+                <span>Controlla e modifica i tuoi dati</span>
+            </a>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

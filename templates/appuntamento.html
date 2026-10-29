@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block contenuto %}
+
+<h2>Appuntamenti</h2>
+
+<h5>Prenota un nuovo appuntamento</h5>
+
+<form action="{{ url_for('durka_route.appuntamento') }}" method="POST">
+
+    <label>ID paziente</label>
+    <input type="number" name="id_paziente" required>
+
+    <label>Dottore</label>
+    <!-- [FONTE] Progetto 19 – JOIN templates/studenti.html righe 13-23: scelta del dottore dalla tabella dottori. -->
+    <select name="id_dottore" required>
+
+        <option value="">Seleziona dottore</option>
+
+        {% for dottore in dottori %}
+
+        <option value="{{ dottore[0] }}">
+            {{ dottore[1] }} {{ dottore[2] }}
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <label>Data e ora</label>
+    <input type="datetime-local" name="data_ora" required>
+
+    <label>Reparto</label>
+    <select name="reparto" required>
+        <option value="cardiologia">Cardiologia</option>
+        <option value="ortopedia">Ortopedia</option>
+        <option value="dermatologia">Dermatologia</option>
+    </select>
+
+    <button type="submit">Prenota</button>
+
+</form>
+
+{% endblock %}

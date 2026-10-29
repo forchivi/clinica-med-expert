@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% from "_icone.html" import icona %}
+
+{% block titolo %}Profilo, Med.Expert{% endblock %}
+
+{% block pagina %}
+<section class="area">
+
+    <div class="area-titolo">
+        <div>
+            <h1>Ciao, {{ utente[1] }}</h1>
+            <p>La tua area personale di Med.Expert.</p>
+        </div>
+    </div>
+
+    <div class="profilo-griglia">
+
+        <!-- [FONTE] Progetto 16 views/profilo.html righe 7-10: dati dell'utente con utente[indice]. -->
+        <div class="profilo-scheda">
+            <div class="profilo-avatar">{{ utente[1][0] }}</div>
+            <h2>{{ utente[1] }}</h2>
+            <span class="distintivo">{{ "Amministratore" if utente[2] == "admin" else "Paziente" }}</span>
+            <a href="{{ url_for('durka_route.logout') }}" class="btn btn-light">{{ icona("esci") }} Esci</a>
+        </div>
+
+        <div class="profilo-colonna">
+
+            <div class="scorciatoie">
+                <a href="{{ url_for('durka_route.chat') }}" class="prossimo">
+                    <span class="azione-icona">{{ icona("scintille") }}</span>
+                    <strong>Assistente IA</strong>
+                    <span>Fai una domanda</span>
+                </a>
+                <a href="{{ url_for('durka_route.prenota') }}" class="prossimo">
+                    <span class="azione-icona">{{ icona("calendario") }}</span>
+                    <strong>Prenota</strong>
+                    <span>Nuovo appuntamento</span>
+                </a>
+                <a href="{{ url_for('durka_route.storico') }}" class="prossimo">
+                    <span class="azione-icona">{{ icona("lista") }}</span>
+                    <strong>Storico</strong>
+                    <span>Le tue domande</span>
+                </a>
+            </div>
+
+            <div class="modulo-scheda">
+                <h2>Modifica i tuoi dati</h2>
+                <p>Puoi cambiare username e password.</p>
+
+                <form action="{{ url_for('durka_route.modifica_profilo') }}" method="POST">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" value="{{ utente[1] }}" required>
+
+                    <label for="password">Nuova password</label>
+                    <input type="password" id="password" name="password" minlength="6" autocomplete="new-password" required>
+
+                    <button type="submit">Salva modifiche</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+{% endblock %}

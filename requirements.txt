@@ -1,0 +1,4 @@
+#sono requisiti che servono per far girare programma con le sue versioni 
+Flask>=3.0
+python-dotenv>=1.0
+groq>=0.11

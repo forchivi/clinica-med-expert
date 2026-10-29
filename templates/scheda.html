@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block contenuto %}
+<h2>Scheda del paziente</h2>
+<p>ID: {{ paziente[0] }}</p>
+<p>Nome: {{ paziente[1] }}</p>
+<p>Cognome: {{ paziente[2] }}</p>
+<p>Data di nascita: {{ paziente[3] }}</p>
+<p>Email: {{ paziente[4] }}</p>
+<p>Telefono: {{ paziente[5] }}</p>
+<p>Indirizzo: {{ paziente[6] }}</p>
+<p>Filiale: {{ paziente[7] }}</p>
+<p>Allergie: {{ paziente[8] }}</p>
+<p>Note: {{ paziente[9] }}</p>
+
+<a href="{{ url_for('durka_route.select') }}">Torna ai pazienti</a>
+{% endblock %}
